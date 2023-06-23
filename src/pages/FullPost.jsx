@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 import { Post } from "../components/Post";
 import { Index } from "../components/AddComment";
@@ -32,14 +33,14 @@ export const FullPost = () => {
       <Post
         _id={data._id}
         title={data.title}
-        imageUrl={data.imageUrl}
+        imageUrl={data.imageUrl ? `https://blog-back-7kpg.onrender.com${data.imageUrl}`: ''}
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
         commentsCount={3}
         tags={data.tags}
         isFullPost>
-        <p>{data.text}</p>
+        <ReactMarkdown children={data.text}/>
       </Post>
       <CommentsBlock
         items={[
